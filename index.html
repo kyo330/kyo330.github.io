@@ -3,233 +3,823 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Priyadharshini Ramesh Kumar's Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>Priyadharshini Ramesh Kumar - Data Analyst Portfolio</title>
     <style>
-        body {
-            font-family: "Poppins", sans-serif;
+        * {
             margin: 0;
             padding: 0;
-            background-color: #F4F3EE; /* Light Cream background */
-            background-image: linear-gradient(#E0AFA0 1px, transparent 1px),
-                              linear-gradient(90deg, #E0AFA0 1px, transparent 1px); /* Grid pattern using E0AFA0 */
-            background-size: 20px 20px;
-            color: #463F3A; /* Dark Brown text color */
+            box-sizing: border-box;
         }
-    
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+            transition: background 0.3s, color 0.3s;
+        }
+
+        body.light-mode {
+            background: linear-gradient(135deg, #e0f7ff 0%, #b3e5fc 50%, #81d4fa 100%);
+        }
+
+        body.light-mode section {
+            background: white;
+        }
+
+        body.light-mode section:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        body.light-mode .hero {
+            background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+        }
+
+        .theme-toggle {
+            background: none;
+            border: 2px solid #333;
+            color: #333;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .theme-toggle:hover {
+            background: #333;
+            color: white;
+        }
+
+        body.light-mode .theme-toggle {
+            border-color: #00d2ff;
+            color: #00d2ff;
+        }
+
+        body.light-mode .theme-toggle:hover {
+            background: #00d2ff;
+            color: white;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
         header {
-            background-color: #E0AFA0; /* Light Terracotta background for header */
-            padding: 1rem 2rem;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+
+        nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
+            padding: 1rem 2rem;
+            gap: 2rem;
         }
-    
-        .name {
-            color: #463F3A; /* Dark Brown color for name */
-            font-weight: bold;
+
+        .logo {
             font-size: 1.5rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, #00d2ff 0%, #3a7bd5 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
-    
-        nav ul {
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
             list-style: none;
-            padding: 0;
+        }
+
+        .nav-links a {
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #00d2ff;
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+            top: 10%;
+            left: 10%;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            animation: float 8s ease-in-out infinite;
+            bottom: 10%;
+            right: 10%;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+            color: #ffffff;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .hero .cta-buttons {
             display: flex;
             gap: 1rem;
-            margin: 0;
+            justify-content: center;
+            animation: fadeInUp 1s ease 0.4s both;
         }
-    
-        nav a {
+
+        .btn {
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
             text-decoration: none;
-            color: #463F3A; /* Dark Brown color for links */
-            font-weight: bold;
+            display: inline-block;
         }
-    
-        main {
-            padding: 6rem 2rem 2rem 2rem; /* Adjust padding to account for fixed header */
+
+        .btn-primary {
+            background: white;
+            color: #2c5364;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: #2c5364;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        section {
+            padding: 5rem 2rem;
+            background: white;
+        }
+
+        section:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            color: #333;
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(135deg, #00d2ff 0%, #3a7bd5 100%);
+            margin: 1rem auto;
+            border-radius: 2px;
+        }
+
+        .about-content {
             max-width: 800px;
             margin: 0 auto;
-        }
-    
-        section {
-            margin-bottom: 2rem;
-            background-color: #FFFFFF; /* White section background color */
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-    
-        h1, h2, h3 {
-            color: #463F3A; /* Dark Brown for headings */
-        }
-    
-        p, li {
-            color: #8A817C; /* Muted Brown for text */
-        }
-    
-        .date {
-            font-style: italic;
-            color: #ABA59C; /* Updated soft Gray-Brown for dates */
-        }
-    
-        footer {
-            background-color: #E0AFA0; /* Light Terracotta background for footer */
             text-align: center;
-            padding: 1rem;
-            color: #463F3A; /* Dark Brown color for footer text */
+            font-size: 1.1rem;
+            line-height: 1.8;
         }
-    
-        .experience-item, .education-item {
+
+        .experience-grid, .projects-grid {
+            display: grid;
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .experience-card, .project-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-left: 4px solid #00d2ff;
+        }
+
+        .experience-card:hover, .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .experience-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #3a7bd5;
+        }
+
+        .experience-company {
+            font-size: 1.1rem;
+            color: #555;
+            margin-top: 0.3rem;
+        }
+
+        .experience-date {
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        .experience-description {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .experience-description li {
+            margin-bottom: 0.5rem;
+        }
+
+        .projects-grid {
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
+
+        .project-card h3 {
+            color: #3a7bd5;
             margin-bottom: 1rem;
         }
-    
-        .contact-info, .links {
+
+        .project-link {
+            display: inline-block;
+            margin-top: 1rem;
+            color: #00d2ff;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .project-link:hover {
+            color: #3a7bd5;
+        }
+
+        .skills-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .skill-category {
+            margin-bottom: 2rem;
+        }
+
+        .skill-category h3 {
+            color: #3a7bd5;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+
+        .skill-tag {
+            background: linear-gradient(135deg, #00d2ff 0%, #3a7bd5 100%);
+            color: white;
+            padding: 0.5rem 1.2rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: transform 0.3s;
+        }
+
+        .skill-tag:hover {
+            transform: scale(1.05);
+        }
+
+        .education-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .education-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            border-top: 4px solid #00d2ff;
+        }
+
+        .education-card h3 {
+            color: #3a7bd5;
+            margin-bottom: 0.5rem;
+        }
+
+        .education-card .degree {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .education-card .gpa {
+            color: #888;
+            margin-bottom: 1rem;
+        }
+
+        .contact-content {
+            max-width: 600px;
+            margin: 0 auto;
             text-align: center;
         }
-    
-        .links a {
-            display: inline-block;
-            margin: 0.5rem;
-            padding: 0.5rem 1rem;
-            background-color: #8A817C; /* Muted Brown background for buttons */
-            color: #FFFFFF; /* White text for buttons */
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #3a7bd5;
             text-decoration: none;
-            border-radius: 5px;
+            font-weight: 600;
+            transition: color 0.3s;
+            font-size: 1.1rem;
         }
-    
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1rem;
+
+        .contact-link:hover {
+            color: #00d2ff;
         }
-    
-        .project-card {
-            background-color: #FFFFFF;
-            padding: 1rem;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+        .btn-download {
+            background: linear-gradient(135deg, #00d2ff 0%, #3a7bd5 100%);
+            color: white;
+            margin-top: 1rem;
         }
-    
-        .contact-button {
-            background-color: #8A817C; /* Muted Brown background for contact buttons */
-            color: #FFFFFF; /* White text for contact buttons */
-            padding: 0.5rem 1rem;
-            text-decoration: none;
-            border-radius: 5px;
+
+        .btn-download:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 210, 255, 0.3);
         }
-        .justified-text {
-    text-align: justify;
-}
+
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .experience-header {
+                flex-direction: column;
+            }
+
+            .education-grid {
+                grid-template-columns: 1fr;
+            }
+
+            nav {
+                flex-wrap: wrap;
+            }
+
+            .theme-toggle {
+                order: 3;
+                margin-top: 0.5rem;
+            }
+        }
     </style>
-    
-    
-    
 </head>
 <body>
     <header>
-        <div class="name">Priyadharshini Ramesh Kumar</div>
-
+        <nav>
+            <div class="logo">PR</div>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button class="theme-toggle" onclick="toggleTheme()">
+                <span id="theme-icon">🌙</span>
+                <span id="theme-text">Dark</span>
+            </button>
+        </nav>
     </header>
-    <main>
-        <section id="home" class="container">
-            <h1>Priyadharshini Ramesh Kumar</h1>
-            <div class="contact-info">
-                <p class="justified-text">I am a graduate student in Data Science at Texas A&M University with a passion for applying machine learning to solve real-world challenges. My academic journey, which began with a Bachelor’s degree in Computer Science and Engineering from Anna University, has been driven by a relentless curiosity to explore the interdisciplinary applications of data science and develop impactful solutions.
 
-My research interests lie at the intersection of machine learning, statistical modeling, and real-life problem-solving, with a particular focus on addressing challenges in environmental analytics, supply chain optimization, and accessibility technologies. My academic and research experiences have equipped me with the skills to not only analyze complex data but also design scalable and interpretable systems that bridge the gap between theory and practice.</p>
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Priyadharshini Ramesh Kumar</h1>
+            <p class="subtitle">Data Analyst | Data Scientist | Machine Learning Engineer</p>
+            <div class="cta-buttons">
+                <a href="#contact" class="btn btn-primary">Get In Touch</a>
+                <a href="#projects" class="btn btn-secondary">View My Work</a>
+                <a href="#" onclick="downloadResume(); return false;" class="btn btn-download">Download Resume</a>
             </div>
-            <div class="links">
-                <a href="https://linkedin.com/in/priyadharshini-r330">LinkedIn</a>
-                <a href="https://github.com/kyo330">GitHub</a>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <h2>About Me</h2>
+            <div class="about-content">
+                <p>Data analyst with a strong foundation in data science and experience in developing analytical solutions for complex datasets using Python, R, and SQL. Proven ability to create real-time geospatial visualization dashboards and design high-performance data pipelines. Skilled in transforming data for actionable insights to enhance business decision-making, with expertise in data interpretation and visualization for impactful business analysis.</p>
             </div>
-        </section>
-        <section id="experience" class="container">
-            <h2>Work Experience</h2>
-            <div class="experience-item">
-                <h3>Research Assistant, Bayesian Risk Assessment and Management of Supply Chains</h3>
-                <p class="date">Feb 2024 – Apr 2024</p>
-                <ul>
-                    <li>Conducted data discovery and analysis for the wood supply chain, identifying key data gaps and inconsistencies to improve model accuracy.</li>
-                    <li>Analyzed supply chain data as part of a U.S. Department of Homeland Security-sponsored project, providing insights to support ongoing risk assessment research.</li>
-                </ul>
+        </div>
+    </section>
+
+    <section id="experience">
+        <div class="container">
+            <h2>Experience</h2>
+            <div class="experience-grid">
+                <div class="experience-card">
+                    <div class="experience-header">
+                        <div>
+                            <div class="experience-title">Data Analyst</div>
+                            <div class="experience-company">Department of Atmospheric Sciences, Texas A&M University</div>
+                        </div>
+                        <div class="experience-date">Aug 2024 - Present</div>
+                    </div>
+                    <ul class="experience-description">
+                        <li>Analyzed lightning strike and precipitation datasets to identify storm structure patterns, supporting meteorological research and severe weather risk assessment</li>
+                        <li>Developed advanced flash stitching algorithms (Sequential, DBSCAN, Hierarchical, and NetworkX-based) to classify lightning events from GOES GLM satellite data</li>
+                        <li>Built interactive 2D geospatial visualization dashboard using Python, Leaflet, and GeoPandas</li>
+                        <li>Optimized data processing pipelines for multi-source atmospheric datasets with automated quality checks</li>
+                    </ul>
+                </div>
+
+                <div class="experience-card">
+                    <div class="experience-header">
+                        <div>
+                            <div class="experience-title">Data Scientist</div>
+                            <div class="experience-company">Stochastic Geomechanics Laboratory, Texas A&M University</div>
+                        </div>
+                        <div class="experience-date">Feb 2024 - Apr 2024</div>
+                    </div>
+                    <ul class="experience-description">
+                        <li>Performed statistical and exploratory data analysis using Scikit-learn and Matplotlib</li>
+                        <li>Enhanced model accuracy using curve fitting and scenario-based analysis</li>
+                        <li>Developed reproducible data pipelines for data quality and research reproducibility</li>
+                    </ul>
+                </div>
+
+                <div class="experience-card">
+                    <div class="experience-header">
+                        <div>
+                            <div class="experience-title">Machine Learning Engineer</div>
+                            <div class="experience-company">TIH-IOT CHANAKYA Fellowship, IIT Bombay</div>
+                        </div>
+                        <div class="experience-date">Jan 2022 - Nov 2022</div>
+                    </div>
+                    <ul class="experience-description">
+                        <li>Developed deep learning model using Keras for Indian Sign Language classification with 92% accuracy</li>
+                        <li>Improved model performance through systematic hyperparameter tuning and error analysis</li>
+                        <li>Compiled insights supporting AI-driven accessibility and inclusion research initiatives</li>
+                    </ul>
+                </div>
             </div>
-            <div class="experience-item">
-                <h3>Research Assistant, TIH-IoT CHANAKYA Fellowship, IIT Bombay</h3>
-                <p class="date">Jan 2022 – Nov 2022</p>
-                <ul>
-                    <li>Engineered a deep learning model for recognizing scientific hand signs with 92% accuracy using Keras.</li>
-                    <li>Part of the dataset creation team, creating a dataset of 10,000 annotated images.</li>
-                </ul>
-            </div>
-        </section>
-        <section id="education" class="container">
-            <h2>Education</h2>
-            <div class="education-item">
-                <h3>Master of Science in Data Science, Texas A&M University</h3>
-                <p class="date">Aug 2023 – Dec 2024</p>
-                <p>GPA: 3.86/4.0</p>
-                <p>Coursework: Data mining and Analysis, Data Visualization, Mathematical Foundation for Data Science, Computing tools for Data, science, Statistical Foundation for Data science, Statistical computing with R and Python, Artificial Intelligence</p>
-            </div>
-            <div class="education-item">
-                <h3>Bachelor of Engineering in Computer Science, Anna University</h3>
-                <p class="date">Aug 2019 – Jun 2023</p>
-                <p>GPA: 8.78/10.0</p>
-                <p>Coursework: Machine Learning, Big Data Analysis, Natural Language Processing, Data Structure and Algorithms,
-                    Probability and Statistics, Cloud Computing
-                    </p>
-            </div>
-        </section>
-        <section id="skills" class="container">
-            <h2>Skills</h2>
-            <h3>Programming Languages</h3>
-            <p>Python, R, Java, SQL, C++, HTML/CSS</p>
-            <h3>Tools & Frameworks</h3>
-            <p>TensorFlow, Keras, Git, Jupyter Notebooks, Scikit-Learn, Pandas, Matplotlib</p>
-        </section>
-        <section id="projects" class="container">
-            <h2>Projects</h2>
+        </div>
+    </section>
+
+    <section id="projects">
+        <div class="container">
+            <h2>Featured Projects</h2>
             <div class="projects-grid">
                 <div class="project-card">
-                    <h3>4D Visualizations of Thunderstorm</h3>
-                    <p>Developed real-time storm development displays using Python libraries, improving data visualization.</p>
+                    <h3>3D Interactive Visualization Web App</h3>
+                    <p>Built an interactive 3D visualization interface using Gradio and Open3D, deployed on Hugging Face Spaces for real-time rendering of indoor and outdoor 3D environments with dynamic camera control and optimized performance.</p>
+                    <a href="https://huggingface.co/spaces/Tohru127/3d-app" target="_blank" class="project-link">View Project →</a>
                 </div>
+
                 <div class="project-card">
-                    <h3>Air Pollutant Correlation</h3>
-                    <p>Led a team to build machine learning models, predicting pollutant concentrations with R2 = 0.87.</p>
+                    <h3>Thunderstorm Visualizations</h3>
+                    <p>Created real-time spatiotemporal visualizations using Python (GeoPandas, Leaflet) to classify lightning strikes and visualize atmospheric data with engineered data pipeline for real-time weather data ingestion.</p>
+                    <a href="https://hlma-website.streamlit.app" target="_blank" class="project-link">View Project →</a>
                 </div>
+
                 <div class="project-card">
-                    <h3>Blockchain and IoT SCM Integration</h3>
-                    <p>Explored real-time tracking with IoT sensors, ensuring data integrity using blockchain.</p>
+                    <h3>Air Pollutant Correlation & Forecasting</h3>
+                    <p>Built regression models achieving R² of 0.87 for air quality prediction with comprehensive correlation and feature analysis to identify environmental factors influencing pollutant levels.</p>
+                    <a href="https://shorturl.at/A3On7" target="_blank" class="project-link">View Project →</a>
                 </div>
+
                 <div class="project-card">
-                    <h3>Revamping Hyperspectral Image Security</h3>
-                    <p>Implemented encryption for hyperspectral imaging data, achieving 97% proximity to desired standards.</p>
-                </div>
-                <div class="project-card">
-                    <h3>Car Resale Value Predictor</h3>
-                    <p>Developed a regression model for used car resale values, aiding clients in pricing strategies.</p>
-                </div>
-                <div class="project-card">
-                    <h3>Secure Smart Cabin Using Arduino</h3>
-                    <p>Designed an IoT-based smart cabin, increasing efficiency by 30% and reducing energy use.</p>
+                    <h3>Hyperspectral Image Encryption</h3>
+                    <p>Developed color-space-based encryption algorithm in Python for hyperspectral image data security (97% proximity) utilizing PCA and Gaussian filtering for enhanced computational efficiency.</p>
+                    <a href="https://shorturl.at/d4q5o" target="_blank" class="project-link">View Project →</a>
                 </div>
             </div>
-        </section>
-        <section id="contact" class="container">
-            <h2>Contact</h2>
-            <p>If you would like to get in touch, feel free to reach out through any of the following methods:</p>
-            <div class="contact-links">
-                <a href="tel:+19792182333" class="contact-button">Call</a>
-                <a href="mailto:priyadharshini_r@tamu.edu" class="contact-button">Email</a>
+        </div>
+    </section>
+
+    <section id="skills">
+        <div class="container">
+            <h2>Technical Skills</h2>
+            <div class="skills-container">
+                <div class="skill-category">
+                    <h3>Programming</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">R</span>
+                        <span class="skill-tag">SQL</span>
+                        <span class="skill-tag">Java</span>
+                        <span class="skill-tag">C++</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Data Science & ML</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Scikit-learn</span>
+                        <span class="skill-tag">Pandas</span>
+                        <span class="skill-tag">TensorFlow</span>
+                        <span class="skill-tag">Keras</span>
+                        <span class="skill-tag">NumPy</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Data Engineering</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Apache Spark</span>
+                        <span class="skill-tag">Hadoop</span>
+                        <span class="skill-tag">PySpark</span>
+                        <span class="skill-tag">Hive</span>
+                        <span class="skill-tag">Snowflake</span>
+                        <span class="skill-tag">ETL Design</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Visualization</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Tableau</span>
+                        <span class="skill-tag">Seaborn</span>
+                        <span class="skill-tag">Matplotlib</span>
+                        <span class="skill-tag">Leaflet</span>
+                        <span class="skill-tag">GeoPandas</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Cloud & Tools</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">AWS EC2</span>
+                        <span class="skill-tag">AWS S3</span>
+                        <span class="skill-tag">AWS RDS</span>
+                        <span class="skill-tag">Git</span>
+                        <span class="skill-tag">Docker</span>
+                        <span class="skill-tag">Linux</span>
+                    </div>
+                </div>
             </div>
-        </section>
-    </main>
+        </div>
+    </section>
+
+    <section id="education">
+        <div class="container">
+            <h2>Education</h2>
+            <div class="education-grid">
+                <div class="education-card">
+                    <h3>Texas A&M University</h3>
+                    <div class="degree">MS, Data Science</div>
+                    <div class="gpa">GPA: 3.91/4.0 | Aug 2023 - Dec 2024</div>
+                    <p><strong>Coursework:</strong> Data Mining and Analysis, Statistical Computing, Artificial Intelligence, Machine Learning</p>
+                </div>
+
+                <div class="education-card">
+                    <h3>Anna University</h3>
+                    <div class="degree">BE, Computer Science and Engineering</div>
+                    <div class="gpa">GPA: 8.78/10.0 | Aug 2019 - Jun 2023</div>
+                    <p><strong>Coursework:</strong> Machine Learning, Big Data Analysis, Probability and Statistics, Natural Language Processing</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <h2>Get In Touch</h2>
+            <div class="contact-content">
+                <p>I'm always interested in new opportunities and collaborations. Feel free to reach out!</p>
+                <div class="contact-links">
+                    <a href="mailto:priyadharshini01.r3034@gmail.com" class="contact-link">
+                        📧 Email
+                    </a>
+                    <a href="https://linkedin.com/in/priyadharshini-r330" target="_blank" class="contact-link">
+                        💼 LinkedIn
+                    </a>
+                    <a href="https://github.com/priyadharshini-r330" target="_blank" class="contact-link">
+                        💻 GitHub
+                    </a>
+                    <a href="https://huggingface.co/Tohru127" target="_blank" class="contact-link">
+                        🤗 Hugging Face
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <footer>
-        <p>&copy; 2024 Priyadharshini Ramesh Kumar</p>
+        <p>&copy; 2024 Priyadharshini Ramesh Kumar. All rights reserved.</p>
     </footer>
+
+    <script>
+        function toggleTheme() {
+            const body = document.body;
+            const themeIcon = document.getElementById('theme-icon');
+            const themeText = document.getElementById('theme-text');
+            
+            body.classList.toggle('light-mode');
+            
+            if (body.classList.contains('light-mode')) {
+                themeIcon.textContent = '☀️';
+                themeText.textContent = 'Light';
+                localStorage.setItem('theme', 'light');
+            } else {
+                themeIcon.textContent = '🌙';
+                themeText.textContent = 'Dark';
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        // Load saved theme preference
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'light') {
+                document.body.classList.add('light-mode');
+                document.getElementById('theme-icon').textContent = '☀️';
+                document.getElementById('theme-text').textContent = 'Light';
+            }
+        });
+
+        function downloadResume() {
+            // Create a simple text-based resume
+            const resumeContent = `PRIYADHARSHINI RAMESH KUMAR
+Data Analyst | Data Scientist | Machine Learning Engineer
+
+Email: priyadharshini01.r3034@gmail.com
+LinkedIn: linkedin.com/in/priyadharshini-r330
+GitHub: github.com/priyadharshini-r330
+Hugging Face: huggingface.co/Tohru127
+
+SUMMARY
+Data analyst with a strong foundation in data science and experience in developing analytical solutions for complex datasets using Python, R, and SQL. Proven ability to create real-time geospatial visualization dashboards and design high-performance data pipelines.
+
+EDUCATION
+Texas A&M University (Aug 2023 - Dec 2024)
+MS, Data Science (GPA: 3.91/4.0)
+
+Anna University (Aug 2019 - Jun 2023)
+BE, Computer Science and Engineering (GPA: 8.78/10.0)
+
+EXPERIENCE
+Data Analyst - Texas A&M University (Aug 2024 - Present)
+- Analyzed lightning strike and precipitation datasets for storm structure patterns
+- Developed advanced flash stitching algorithms for lightning event classification
+- Built interactive 2D geospatial visualization dashboard using Python, Leaflet, and GeoPandas
+
+Data Scientist - Texas A&M University (Feb 2024 - Apr 2024)
+- Performed statistical and exploratory data analysis using Scikit-learn and Matplotlib
+- Enhanced model accuracy using curve fitting and scenario-based analysis
+
+Machine Learning Engineer - IIT Bombay (Jan 2022 - Nov 2022)
+- Developed deep learning model for Indian Sign Language classification (92% accuracy)
+- Improved model performance through systematic hyperparameter tuning
+
+TECHNICAL SKILLS
+Programming: Python, R, SQL, Java, C++
+Data Science: Scikit-learn, Pandas, TensorFlow, Keras, NumPy
+Data Engineering: Apache Spark, Hadoop, PySpark, Hive, Snowflake
+Visualization: Tableau, Matplotlib, Seaborn, Leaflet, GeoPandas
+Cloud: AWS (EC2, S3, RDS, Lambda), Git, Docker
+
+PROJECTS
+- 3D Interactive Visualization Web App
+- Thunderstorm Visualizations (Capstone Project)
+- Air Pollutant Correlation & Forecasting
+- Hyperspectral Image Encryption
+
+For full details, visit my portfolio website.`;
+
+            // Create blob and download
+            const blob = new Blob([resumeContent], { type: 'text/plain' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'Priyadharshini_Ramesh_Kumar_Resume.txt';
+            document.body.appendChild(a);
+            a.click();
+            window.URL.revokeObjectURL(url);
+            document.body.removeChild(a);
+        }
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
